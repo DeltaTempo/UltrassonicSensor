@@ -1,15 +1,15 @@
 
 #include <Ultrasonic.h>
  
-#define pino_trigger 4
-#define pino_echo 5
-#define saida 7
+#define pin_trigger 4 
+#define pin_echo 5
+#define pin_output 7
  
-Ultrasonic ultrasonic(pino_trigger, pino_echo);
+Ultrasonic ultrasonic(pin_trigger, pin_echo);
  
 void setup()
 {
-  pinMode(saida, OUTPUT);
+  pinMode(pin_output, OUTPUT);
 }
  
 void loop()
@@ -17,13 +17,13 @@ void loop()
   long microsec = ultrasonic.timing();
   int distanciaCM = ultrasonic.convert(microsec, Ultrasonic::CM);
   if(distanciaCM <= 50){
-    digitalWrite(saida, HIGH);
+    digitalWrite(pin_output, HIGH);
     delay(100);
   }
   else if(distanciaCM < 150) {
-    digitalWrite(saida,HIGH);
+    digitalWrite(pin_output,HIGH);
     delay((distanciaCM-50)*10);
-    digitalWrite(saida, LOW);
+    digitalWrite(pin_output, LOW);
   }
   delay(100);
 }
